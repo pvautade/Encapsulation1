@@ -1,0 +1,223 @@
+ackage OP;
+
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
+public class Car {
+  private String licenceplate;
+  private String model;
+  private String brand;
+  private boolean available;
+  private int year;
+
+   public Car(String licenceplate,String model,String brand,int year){
+	   if(licenceplate== null  || licenceplate.isEmpty()) {
+	   }
+	   else {
+		   System.out.println("licenceplate cannot  null or empty");
+	   }
+	   if(year <=0) {
+	   }	   
+	   else {
+		   System.out.println("year number possitive ");
+	   }
+	   
+	   this.licenceplate = licenceplate;
+	   this.model= model;
+	   this.brand=brand;
+	   this.available=true;
+	   this.year=year;
+   }
+  
+   public String getLicenceplate() {
+	return licenceplate;
+}
+
+public void setLicenceplate(String licenceplate) {
+	this.licenceplate = licenceplate;
+}
+
+public String getModel() {
+	return model;
+}
+
+public void setModel(String model) {
+	this.model = model;
+}
+
+public String getBrand() {
+	return brand;
+}
+
+public void setBrand(String brand) {
+	this.brand = brand;
+}
+
+public boolean isAvailable() {
+	return available;
+}
+
+public void setAvailable(boolean available) {
+	this.available = available;
+}
+
+public int getYear() {
+	return year;
+}
+
+public void setYear(int year) {
+	this.year = year;
+}
+ public void rentable() {
+	 available=false;
+ }
+ public void returned() {
+	 available=true;
+ }
+public class customer{
+	private String customerid;
+	private String name;
+	private String email;
+	private List<Car> rentedcars;
+	
+	public customer(String customerid,String name,String email) {
+		if(customerid == null || customerid.isEmpty()) {
+		}
+		else {
+			System.out.println("customer id can not  null or empty");
+		}
+		if(!email.contains("@")) {
+		}	
+		
+		else {
+			System.out.println("invalid email format");
+		}
+	  this.customerid= customerid;
+	  this.name= name;
+	  this.email=email;
+	  this.rentedcars= new ArrayList<>();
+			
+	}
+	
+	public String getCustomerid() {
+		return customerid;
+	}
+
+	public void setCustomerid(String customerid) {
+		this.customerid = customerid;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public List<Car> getRentedcars() {
+		return new
+		ArrayList<> (rentedcars);
+				
+	}
+
+	public void rentedcars(Car car){
+		if(rentedcars.contains(car)) {
+		}
+		else {
+			System.out.println("this car is already rented to the customer");
+		}
+			rentedcars.add(car);
+	}
+	public void returncars(Car car) {
+		rentedcars.remove(car);
+	}
+
+	public class rental {
+	private Car car;
+	private customer customer;
+	private LocalDate rentaldate;
+	private LocalDate returndate;
+	
+	public rental(Car car,customer customer,LocalDate rentalDate,LocalDate returndate) {
+		if(rentalDate.isAfter(LocalDate.now())) {
+		}		
+		else {
+			System.out.println("rental date cannot future");
+		}
+     this.car= car;
+     this.customer= customer;
+     this.rentaldate = rentaldate;
+     this.returndate= null;
+     car.rentable();
+     customer.rentedcars(car);
+     
+	}
+
+	public Car getCar() {
+		return car;
+	}
+
+	public void setCar(Car car) {
+		this.car = car;
+	}
+
+	public customer getCustomer() {
+		return customer;
+	}
+
+	public void setCustomer(customer customer) {
+		this.customer = customer;
+	}
+
+	public LocalDate getRentaldate() {
+		return rentaldate;
+	}
+
+	public void set(LocalDate rentaldate) {
+		this.rentaldate = rentaldate;
+	}
+
+	public LocalDate getReturndate() {
+		return returndate;
+	}
+
+	public void setReturndate(LocalDate returndate) {
+		this.returndate = returndate;
+	}
+	public void returncar() {
+		car.returned();
+		customer.returncars(car);
+		returndate=LocalDate.now();
+		
+	}
+	
+	public class testclass {
+		
+		
+   	public static void main(String[] args) {
+			
+			Car a= new Car("mhd","hyat","suzuki",2022);
+		  System.out.println("licenceplate:" + a.licenceplate);
+		  System.out.println("model:" +a.model);
+		  a.getBrand();
+		  a.getLicenceplate();
+		  a.setYear(2022);
+		  
+		  	}		
+	}
+	
+	}
+	
+   }
+}
+
